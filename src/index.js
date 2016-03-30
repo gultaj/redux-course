@@ -4,4 +4,11 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import App from './containers/App';
 
-render(<App />, document.getElementById('root'));
+const store = createStore(() => {});
+
+render(
+	<Provider store={store}>
+		<App />
+	</Provider>,
+	document.getElementById('root')
+);
