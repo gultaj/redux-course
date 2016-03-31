@@ -8,7 +8,6 @@ export default class Page extends Component {
 	};
 
 	onYearBtnClick(e) {
-		console.log(e.target);
 		this.props.setYear(+e.target.textContent);
 	}
 
@@ -20,7 +19,8 @@ export default class Page extends Component {
 				<button className='btn' onClick={::this.onYearBtnClick}>2015</button>
 				<button className='btn' onClick={::this.onYearBtnClick}>2014</button>
 			</p>
-			<p>У тебя {photos.length} фото за {year} год</p>
+			<h3>{year} год</h3>
+			<p>У тебя {photos.length} фото.</p>
 		</div>;
 	}
 }
