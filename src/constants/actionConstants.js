@@ -1,2 +1,4 @@
-const GET_PHOTO_REQUEST = 'GET_PHOTO_REQUEST';
-const GET_PHOTO_SUCCESS = 'GET_PHOTO_SUCCESS';
+export const PAGE = {
+	SET_YEAR : 'SET_YEAR'
+}
+
