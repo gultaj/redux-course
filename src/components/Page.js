@@ -2,25 +2,35 @@ import React, { Component, PropTypes } from 'react';
 
 export default class Page extends Component {
 	static propTypes = {
-		year: PropTypes.number.isRequired,
-		photos: PropTypes.array.isRequired,
-		setYear: PropTypes.func.isRequired
+		user: PropTypes.number,
+		posts: PropTypes.array,
+		users: PropTypes.array,
+		fetching: PropTypes.bool,
+		pageActions: PropTypes.object
 	};
 
-	onYearBtnClick(e) {
-		this.props.setYear(+e.target.textContent);
+	componentWillReceiveProps() {
+		// this.props.pageActions.getPosts(this.props.user);
+	}
+
+	onUserBtnClick(e) {
+		this.props.pageActions.setUser(+e.target.dataset.id);
+		this.props.pageActions.getPosts(e.target.dataset.id);
 	}
 
 	render() {
-		const { year, photos } = this.props
+		const { user, posts, users, fetching } = this.props;
 		return <div className='ib page'>
 			<p>
-				<button className='btn' onClick={::this.onYearBtnClick}>2016</button>
-				<button className='btn' onClick={::this.onYearBtnClick}>2015</button>
-				<button className='btn' onClick={::this.onYearBtnClick}>2014</button>
+				{users.map(u => 
+					<button className='btn' key={u} data-id={u} onClick={::this.onUserBtnClick}>{u}</button>
+				)}
 			</p>
-			<h3>{year} год</h3>
-			<p>У тебя {photos.length} фото.</p>
+			<h3>{user} год</h3>
+			{ fetching ? 
+				<p>Загрузка...</p> :
+				<p>Постов: {posts.length}.</p>
+			}
 		</div>;
 	}
 }
